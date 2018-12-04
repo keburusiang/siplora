@@ -14,6 +14,7 @@ class PelaporsController extends Controller
 
 
     public function registerPost(Request $request){
+        $user = Auth::User();
         $this->validate($request, [
             'namaDpn' => 'required|min:4',
             'namaBlk' => 'required|min:4',
@@ -29,6 +30,7 @@ class PelaporsController extends Controller
         $data->nama_belakang = $request->namaBlk;
         $data->email = $request->email;
         $data->notelepon = $request->notelepon;
+        $data -> user_id = $user->id;
         $data->tanggallahir = $request->tanggalLhr;
         $dataUser->username = $request->username;
         $dataUser->password = bcrypt($request->password);
